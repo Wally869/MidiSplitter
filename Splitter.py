@@ -187,9 +187,9 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Split Midi Songs')
     parser.add_argument("-inputfolder", default="InputSplitter")
     parser.add_argument("-outputfolder", default="OutputSplitter")
-    parser.add_argument("-minmessages", default=20)
-    parser.add_argument("-exclusionmultiplier", default=5)
-    parser.add_argument("-useinstrumentsound", default=True)
+    parser.add_argument("-minmessages", default=20, help="Prune tracks with less midi messages than this number")
+    parser.add_argument("-exclusionmultiplier", default=5, help="Multiplier for timedelta messages. Median of timedelta multiplied by this determines section splitting")
+    parser.add_argument("-useinstrumentsound", default=True, help="Use the track instrument, or default to Acoustic Grand Piano")
 
     args = parser.parse_args()
 
