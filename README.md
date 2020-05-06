@@ -24,6 +24,25 @@ python Splitter.py
 
 # see argparse parameters
 python Splitter.py -h 
+usage: Splitter.py [-h] [-inputfolder INPUTFOLDER]
+                   [-outputfolder OUTPUTFOLDER] [-minmessages MINMESSAGES]
+                   [-exclusionmultiplier EXCLUSIONMULTIPLIER]
+                   [-useinstrumentsound USEINSTRUMENTSOUND]
+
+Split Midi Songs
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -inputfolder INPUTFOLDER
+  -outputfolder OUTPUTFOLDER
+  -minmessages MINMESSAGES
+                        Prune tracks with less midi messages than this number
+  -exclusionmultiplier EXCLUSIONMULTIPLIER
+                        Multiplier for timedelta messages. Median of timedelta
+                        multiplied by this determines section splitting
+  -useinstrumentsound USEINSTRUMENTSOUND
+                        Use the track instrument, or default to Acoustic Grand
+                        Piano
 ```
 
 
