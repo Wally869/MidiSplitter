@@ -1,9 +1,10 @@
 from __future__ import annotations
 
+from dataclasses import dataclass
 from pathlib import Path
 from glob import glob
 import mido
-from MidiStructurer.Instruments import Instruments
+from MidiStructurer.Instruments import InstrumentsLibrary
 
 from copy import deepcopy
 from numpy import array
@@ -14,6 +15,8 @@ from typing import List
 
 import argparse
 
+
+@dataclass
 class PARAMETERS:
     InputFolder = "InputSplitter"
     OutputFolder = "OutputSplitter"
@@ -22,9 +25,55 @@ class PARAMETERS:
     UseCorrectInstrument = True
 
 
+# create a report on file splitted
+# save some splitting parameters as well
+class Report(object):
+    def __init__(self):
+        self.NbTracksBeforeSplit = 0
+        self.NbTracksAfterSplit = 0
+        self.NbSegmentsTotal = 0
+        self.NbSegmentsKept = 0
+
+        self.SegmentsInformation = []
+
+    def CountTracksAfterSplit(self):
+        tracksReported = set()
+        for si in self.SegmentsInformation:
+            tracksReported.add(si["Channel"])
+        self.NbTracksAfterSplit = len(tracksReported)
+
+
+    # incorrect nb of tracks after split
+    def Stringify(self, filename):
+        reportString = "Filename: " + filename + ".mid\n"
+        for field in self.__dict__.keys():
+            if field != "SegmentsInformation":
+                reportString += "{}: {}\n".format(field, self.__dict__[field])
+        reportString += "\n"
+        reportString += "Minimum Messages: {}\n".format(PARAMETERS.MinimumMessages)
+        reportString += "Exclusion Multiplier: {}\n".format(PARAMETERS.TimeDeltaExclusionMultiplier)
+        reportString += "\n"
+        for segmentInfo in self.SegmentsInformation:
+            separator = "=" * 10 + "\n"
+            reportString += separator
+            reportString += "Channel: {}\n".format(segmentInfo["Channel"])
+            if segmentInfo["Channel"] != 9:
+                reportString += "Instrument: {}\n".format(segmentInfo["Instrument"])
+            else:
+                reportString += "Instrument: {}\n".format("Drums")
+            reportString += "NbMessages: {}\n".format(segmentInfo["NbMessages"])
+            reportString += "\n"
+        return reportString
+
+
+
+report = Report()
+
 def main():
     allFiles = glob(PARAMETERS.InputFolder + "/*.mid")
     for f in allFiles:
+        global report
+        report = Report()
         HandleSong(f)
 
 
@@ -39,17 +88,20 @@ def HandleSong(filepath: str):
 
     tracks = SplitSong(f)
     # set the tracks
-    SaveTracks(filepath, tracks, ticksPerBeat, tempoMessage)
+    SaveSegments(filepath, tracks, ticksPerBeat, tempoMessage)
 
 
 def SplitSong(song: mido.MidiFile) -> List[List[mido.message]]:
     # keep tracks with note_on
+    report.NbTracksBeforeSplit = len(song.tracks)
     selectedTracks = list(
         filter(
             lambda x: HasNotes(x),
             song.tracks
         )
     )
+
+    #report.NbTracksAfterSplit = len(selectedTracks)
 
     # first, go through all messages for all tracks to get their timedelta
     # excluding timedeltas of 0
@@ -79,17 +131,17 @@ def SplitSong(song: mido.MidiFile) -> List[List[mido.message]]:
     return tracks
 
 # need to add translation from program to instrument name
-def SaveTracks(filepath, tracks, ticksPerBeat, tempoMessage):
+def SaveSegments(filepath, segments, ticksPerBeat, tempoMessage):
     filename = filepath.replace(".mid", "")
     filename = filename.split("/")[-1]
     prefixesUsed = {}
-    for t in tracks:
+    for t in segments:
+        report.NbSegmentsTotal += 1
         # special case for drums
         if t[0] == 9:
             instrumentChannel = "Drums"
         else:
-            #print(t[1])
-            instrumentChannel = Instruments.GetInstrumentFromSignal(t[1])
+            instrumentChannel = InstrumentsLibrary.GetInstrumentFromSignal(t[1])
         currPrefix = "Track{}_{}".format(t[0], instrumentChannel)
         if currPrefix in prefixesUsed.keys():
             prefixesUsed[currPrefix] += 1
@@ -100,7 +152,7 @@ def SaveTracks(filepath, tracks, ticksPerBeat, tempoMessage):
         )
 
         mf = mido.MidiFile()
-        # adding a program_change to get correct sound?
+        # adding a program_change to get correct sound
         if PARAMETERS.UseCorrectInstrument:
             if t[0] != 9:
                 if t[1] < 0:
@@ -121,10 +173,23 @@ def SaveTracks(filepath, tracks, ticksPerBeat, tempoMessage):
         # aaaand save file pog
         # moved the length check here, seemed to have issues before?
         if len(mf.tracks[0]) > PARAMETERS.MinimumMessages:
+            report.NbSegmentsKept += 1
+            report.SegmentsInformation.append(
+                {
+                    "Channel": t[0],
+                    "Instrument": instrumentChannel,
+                    "NbMessages": len(mf.tracks[0]) - 1
+                }
+            )
             outputpath = PARAMETERS.OutputFolder + "/" + filename
             Path(outputpath).mkdir(parents=True, exist_ok=True)
             mf.save(outputpath + "/" + name)
 
+    report.CountTracksAfterSplit()
+    stringReport = report.Stringify(filename)
+    outputpath = PARAMETERS.OutputFolder + "/" + filename
+    with open(outputpath + "/-----SplitterReport-----.txt", "w+") as f:
+        f.write(stringReport)
 
 def FindIdTrack(track):
     for m in track:
@@ -182,10 +247,10 @@ def SplitTrack(idTrack, trackMessages, exclThreshold) -> List[List[mido.message]
 
     return outTracks
 
-
+# change outputfolder argparse to allow for multiple folders?
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Split Midi Songs')
-    parser.add_argument("-inputfolder", default="InputSplitter")
+    parser.add_argument("-inputfolder", nargs="+", default="InputSplitter")
     parser.add_argument("-outputfolder", default="OutputSplitter")
     parser.add_argument("-minmessages", default=20, help="Prune tracks with less midi messages than this number")
     parser.add_argument("-exclusionmultiplier", default=5, help="Multiplier for timedelta messages. Median of timedelta multiplied by this determines section splitting")
@@ -193,10 +258,15 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    PARAMETERS.InputFolder = args.inputfolder
+    #PARAMETERS.InputFolder = args.inputfolder
     PARAMETERS.OutputFolder = args.outputfolder
     PARAMETERS.MinimumMessages = args.minmessages
     PARAMETERS.TimeDeltaExclusionMultiplier = args.exclusionmultiplier
     PARAMETERS.UseCorrectInstrument = args.useinstrumentsound
 
-    main()
+    if type(args.inputfolder) != list:
+        args.inputfolder = [args.inputfolder]
+
+    for folder in args.inputfolder:
+        PARAMETERS.InputFolder = folder
+        main()

@@ -2,8 +2,8 @@
 
 ### Overview
 
-Script to split midi files into tracks and subsegments.
-
+Script to split midi files from a folder, into subsegments.
+The intent is to extract "patterns" from individual tracks
 
 
 ### Dependencies
@@ -17,6 +17,7 @@ from github: MidiStructurer (my repo: https://github.com/Wally869/MidiStructurer
 ### Usage
 
 Can be called directly from cmd
+the inputfolder argument can take lists so it is possible to operate on multiple folders at once
 
 ```
 # No args
@@ -33,7 +34,7 @@ Split Midi Songs
 
 optional arguments:
   -h, --help            show this help message and exit
-  -inputfolder INPUTFOLDER
+  -inputfolder INPUTFOLDER [INPUTFOLDER ..]
   -outputfolder OUTPUTFOLDER
   -minmessages MINMESSAGES
                         Prune tracks with less midi messages than this number
@@ -53,6 +54,38 @@ An input file of name "test.mid" will be output in a serie of mid files using th
 
 Track{TrackID}_{TrackInstrument}-{SectionID}.mid
 
+A report is also generated per song under the name "-----SplitterReport-----.txt".
+It tracks some metrics, such as number of tracks before/after split, total number of segments,
+number of segments kept.
 
+It also records parameters used when splitting, and gives a breakdown of the segments recorded
 
 To Note: some segments can be excluded so SectionID is not guaranteed to be continuous
+
+A sample report:
+```text
+Filename: InputSplitter\test.mid
+NbTracksBeforeSplit: 22
+NbTracksAfterSplit: 12
+NbSegmentsTotal: 46
+NbSegmentsKept: 25
+
+Minimum Messages: 20
+Exclusion Multiplier: 5
+
+==========
+Channel: 0
+Instrument: Acoustic Grand Piano
+NbMessages: 703
+
+==========
+Channel: 1
+Instrument: Acoustic Grand Piano
+NbMessages: 198
+
+==========
+Channel: 2
+Instrument: Acoustic Grand Piano
+NbMessages: 503
+
+```
