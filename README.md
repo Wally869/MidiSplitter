@@ -89,3 +89,8 @@ Instrument: Acoustic Grand Piano
 NbMessages: 503
 
 ```
+
+### To Do
+
+- Implement threading
+- Fix errors whenever possible
