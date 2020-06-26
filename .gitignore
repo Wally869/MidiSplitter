@@ -1,2 +1,5 @@
 .idea
 __pycache__
+OutputSplitter/
+InputSplitter/computer
+InputSplitter/other

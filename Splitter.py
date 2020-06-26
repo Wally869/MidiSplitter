@@ -1,4 +1,6 @@
 from __future__ import annotations
+from typing import List
+import sys
 
 from dataclasses import dataclass
 from pathlib import Path
@@ -10,8 +12,6 @@ from copy import deepcopy
 from numpy import array
 
 from utils import FindExclusionThreshold, GetSelectedMessageTypes, GetSelectedMessageTypesInSong
-
-from typing import List
 
 import argparse
 
@@ -33,6 +33,7 @@ class Report(object):
         self.NbTracksAfterSplit = 0
         self.NbSegmentsTotal = 0
         self.NbSegmentsKept = 0
+        self.ExclusionThreshold = 0
 
         self.SegmentsInformation = []
 
@@ -47,11 +48,12 @@ class Report(object):
     def Stringify(self, filename):
         reportString = "Filename: " + filename + ".mid\n"
         for field in self.__dict__.keys():
-            if field != "SegmentsInformation":
+            if field not in ["SegmentsInformation", "ExclusionThreshold"]:
                 reportString += "{}: {}\n".format(field, self.__dict__[field])
         reportString += "\n"
         reportString += "Minimum Messages: {}\n".format(PARAMETERS.MinimumMessages)
         reportString += "Exclusion Multiplier: {}\n".format(PARAMETERS.TimeDeltaExclusionMultiplier)
+        reportString += "Computed Exclusion Threshold: {}\n".format(self.ExclusionThreshold)
         reportString += "\n"
         for segmentInfo in self.SegmentsInformation:
             separator = "=" * 10 + "\n"
@@ -70,11 +72,22 @@ class Report(object):
 report = Report()
 
 def main():
-    allFiles = glob(PARAMETERS.InputFolder + "/*.mid")
+    allFiles = glob(PARAMETERS.InputFolder + "\\**\\*.mid", recursive=True)
     for f in allFiles:
         global report
         report = Report()
-        HandleSong(f)
+        try:
+            HandleSong(f)
+        except OSError as e:
+            print("Mido - Error on opening file: " + f)
+            print("Error Message: " + str(e))
+            print("Catching and continuing")
+            print()
+        except:
+            print("An Error Occurred: " + str(sys.exc_info()[0]))
+            print("Catching and continuing")
+            print()
+
 
 
 
@@ -110,7 +123,7 @@ def SplitSong(song: mido.MidiFile) -> List[List[mido.message]]:
     timedeltas = timedeltas[timedeltas > 0.0]
 
     exclThreshold = FindExclusionThreshold(timedeltas, PARAMETERS.TimeDeltaExclusionMultiplier)
-
+    report.ExclusionThreshold = exclThreshold
     # now for actual splitting
     tracks = []
     for t in selectedTracks:
@@ -134,6 +147,9 @@ def SplitSong(song: mido.MidiFile) -> List[List[mido.message]]:
 def SaveSegments(filepath, segments, ticksPerBeat, tempoMessage):
     filename = filepath.replace(".mid", "")
     filename = filename.split("/")[-1]
+    print(filename)
+    while filename[-1] == " ":
+        filename = filename[:-1]
     prefixesUsed = {}
     for t in segments:
         report.NbSegmentsTotal += 1
@@ -141,7 +157,7 @@ def SaveSegments(filepath, segments, ticksPerBeat, tempoMessage):
         if t[0] == 9:
             instrumentChannel = "Drums"
         else:
-            instrumentChannel = InstrumentsLibrary.GetInstrumentFromSignal(t[1])
+            instrumentChannel = InstrumentsLibrary.GetInstrumentNameFromSignal(t[1])
         currPrefix = "Track{}_{}".format(t[0], instrumentChannel)
         if currPrefix in prefixesUsed.keys():
             prefixesUsed[currPrefix] += 1
@@ -181,14 +197,15 @@ def SaveSegments(filepath, segments, ticksPerBeat, tempoMessage):
                     "NbMessages": len(mf.tracks[0]) - 1
                 }
             )
-            outputpath = PARAMETERS.OutputFolder + "/" + filename
+            outputpath = PARAMETERS.OutputFolder + "\\" + filename
             Path(outputpath).mkdir(parents=True, exist_ok=True)
-            mf.save(outputpath + "/" + name)
+            mf.save(outputpath + "\\" + name)
 
     report.CountTracksAfterSplit()
     stringReport = report.Stringify(filename)
     outputpath = PARAMETERS.OutputFolder + "/" + filename
-    with open(outputpath + "/-----SplitterReport-----.txt", "w+") as f:
+    Path(outputpath).mkdir(parents=True, exist_ok=True)
+    with open(outputpath + "\\" + "-----SplitterReport-----.txt", "w+") as f:
         f.write(stringReport)
 
 def FindIdTrack(track):
