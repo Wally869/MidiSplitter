@@ -92,5 +92,6 @@ NbMessages: 503
 
 ### To Do
 
+- Better threshold selection than naive full-song median multiplication, and do it by channel
 - Implement threading
 - Fix errors whenever possible
