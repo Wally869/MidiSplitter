@@ -10,7 +10,7 @@ The intent is to extract "patterns" from individual tracks
 
 from pip: glob, mido, numpy 
 
-from github: MidiStructurer (my repo: https://github.com/Wally869/MidiStructurer)
+from github: MusiStrata (my repo: https://github.com/Wally869/MusiStrata)
 
 
 
