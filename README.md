@@ -34,16 +34,15 @@ Split Midi Songs
 
 optional arguments:
   -h, --help            show this help message and exit
-  -inputfolder INPUTFOLDER [INPUTFOLDER ..]
-  -outputfolder OUTPUTFOLDER
-  -minmessages MINMESSAGES
-                        Prune tracks with less midi messages than this number
-  -exclusionmultiplier EXCLUSIONMULTIPLIER
-                        Multiplier for timedelta messages. Median of timedelta
-                        multiplied by this determines section splitting
-  -useinstrumentsound USEINSTRUMENTSOUND
-                        Use the track instrument, or default to Acoustic Grand
-                        Piano
+  -i INPUTFOLDER [INPUTFOLDER ..]
+  -o OUTPUTFOLDER
+  -m MINMESSAGES
+      Prune tracks with less midi messages than this number
+  -e EXCLUSIONMULTIPLIER
+      Multiplier for timedelta messages. Median of timedelta
+      multiplied by this determines section splitting
+  -u USEINSTRUMENTSOUND
+      Use the track instrument, or default to Acoustic Grand Piano
 ```
 
 
@@ -93,5 +92,5 @@ NbMessages: 503
 ### To Do
 
 - Better threshold selection than naive full-song median multiplication, and do it by channel
-- Implement threading
+- Implement threading (writing midi can be bottleneck I guess? Or handle songs seperately)
 - Fix errors whenever possible

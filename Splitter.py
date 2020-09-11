@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from glob import glob
 import mido
-from MidiStructurer.Instruments import InstrumentsLibrary
+from MusiStrata.Instruments import InstrumentsLibrary
 
 from copy import deepcopy
 from numpy import array
@@ -45,7 +45,7 @@ class Report(object):
 
 
     # incorrect nb of tracks after split
-    def Stringify(self, filename):
+    def Stringify(self, filename) -> str:
         reportString = "Filename: " + filename + ".mid\n"
         for field in self.__dict__.keys():
             if field not in ["SegmentsInformation", "ExclusionThreshold"]:
@@ -208,20 +208,20 @@ def SaveSegments(filepath, segments, ticksPerBeat, tempoMessage):
     with open(outputpath + "\\" + "-----SplitterReport-----.txt", "w+") as f:
         f.write(stringReport)
 
-def FindIdTrack(track):
+def FindIdTrack(track) -> int:
     for m in track:
         if m.type == "note_on":
             return m.channel
     return -1
 
-def HasNotes(track):
+def HasNotes(track) -> bool:
     for m in track:
         if m.type == "note_on":
             return True
     return False
 
 
-def ExtractTimedeltas(tracks, excludeZero: bool = True):
+def ExtractTimedeltas(tracks, excludeZero: bool = True) -> List[int]:
     timedeltas = []
     for t in tracks:
         for m in t:
@@ -267,23 +267,23 @@ def SplitTrack(idTrack, trackMessages, exclThreshold) -> List[List[mido.message]
 # change outputfolder argparse to allow for multiple folders?
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Split Midi Songs')
-    parser.add_argument("-inputfolder", nargs="+", default="InputSplitter")
-    parser.add_argument("-outputfolder", default="OutputSplitter")
-    parser.add_argument("-minmessages", default=20, help="Prune tracks with less midi messages than this number")
-    parser.add_argument("-exclusionmultiplier", default=5, help="Multiplier for timedelta messages. Median of timedelta multiplied by this determines section splitting")
-    parser.add_argument("-useinstrumentsound", default=True, help="Use the track instrument, or default to Acoustic Grand Piano")
+    parser.add_argument("-i", nargs="+", default="InputSplitter")
+    parser.add_argument("-o", default="OutputSplitter")
+    parser.add_argument("-m", default=20, help="Prune tracks with less midi messages than this number")
+    parser.add_argument("-e", default=5, help="Multiplier for timedelta messages. Median of timedelta multiplied by this determines section splitting")
+    parser.add_argument("-u", default=True, help="Use the track instrument, or default to Acoustic Grand Piano")
 
     args = parser.parse_args()
 
-    #PARAMETERS.InputFolder = args.inputfolder
-    PARAMETERS.OutputFolder = args.outputfolder
-    PARAMETERS.MinimumMessages = args.minmessages
-    PARAMETERS.TimeDeltaExclusionMultiplier = args.exclusionmultiplier
-    PARAMETERS.UseCorrectInstrument = args.useinstrumentsound
+    #PARAMETERS.InputFolder = args.i
+    PARAMETERS.OutputFolder = args.o
+    PARAMETERS.MinimumMessages = args.m
+    PARAMETERS.TimeDeltaExclusionMultiplier = args.e
+    PARAMETERS.UseCorrectInstrument = args.u
 
-    if type(args.inputfolder) != list:
-        args.inputfolder = [args.inputfolder]
+    if type(args.i) != list:
+        args.i = [args.i]
 
-    for folder in args.inputfolder:
+    for folder in args.i:
         PARAMETERS.InputFolder = folder
         main()
