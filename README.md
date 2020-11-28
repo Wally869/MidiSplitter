@@ -8,13 +8,15 @@ The intent is to extract "patterns" from individual tracks
 
 ### Dependencies
 
-from pip: glob, mido, numpy 
+from pip: glob, mido, numpy, gooey
 
 from github: MusiStrata (my repo: https://github.com/Wally869/MusiStrata)
 
 
 
 ### Usage
+
+ADDED GOOEY SUPPORT
 
 Can be called directly from cmd
 the inputfolder argument can take lists so it is possible to operate on multiple folders at once
