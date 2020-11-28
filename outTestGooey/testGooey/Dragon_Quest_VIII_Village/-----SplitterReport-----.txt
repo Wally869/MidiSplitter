@@ -1,0 +1,135 @@
+Filename: testGooey\Dragon_Quest_VIII_Village.mid
+NbTracksBeforeSplit: 22
+NbTracksAfterSplit: 12
+NbSegmentsTotal: 46
+NbSegmentsKept: 25
+
+Minimum Messages: 20
+Exclusion Multiplier: 5
+Computed Exclusion Threshold: 2400
+
+==========
+Channel: 0
+Instrument: Acoustic Grand Piano
+NbMessages: 703
+
+==========
+Channel: 1
+Instrument: Acoustic Grand Piano
+NbMessages: 198
+
+==========
+Channel: 2
+Instrument: Acoustic Grand Piano
+NbMessages: 503
+
+==========
+Channel: 3
+Instrument: Orchestral Harp
+NbMessages: 69
+
+==========
+Channel: 4
+Instrument: Orchestral Harp
+NbMessages: 97
+
+==========
+Channel: 5
+Instrument: Clarinet
+NbMessages: 43
+
+==========
+Channel: 6
+Instrument: String Ensemble 1
+NbMessages: 245
+
+==========
+Channel: 7
+Instrument: String Ensemble 1
+NbMessages: 65
+
+==========
+Channel: 7
+Instrument: String Ensemble 1
+NbMessages: 69
+
+==========
+Channel: 8
+Instrument: String Ensemble 1
+NbMessages: 121
+
+==========
+Channel: 8
+Instrument: String Ensemble 1
+NbMessages: 139
+
+==========
+Channel: 10
+Instrument: Oboe
+NbMessages: 66
+
+==========
+Channel: 11
+Instrument: Flute
+NbMessages: 66
+
+==========
+Channel: 12
+Instrument: French Horn
+NbMessages: 245
+
+==========
+Channel: 3
+Instrument: Orchestral Harp
+NbMessages: 69
+
+==========
+Channel: 4
+Instrument: Orchestral Harp
+NbMessages: 97
+
+==========
+Channel: 5
+Instrument: Clarinet
+NbMessages: 43
+
+==========
+Channel: 6
+Instrument: String Ensemble 1
+NbMessages: 245
+
+==========
+Channel: 7
+Instrument: String Ensemble 1
+NbMessages: 65
+
+==========
+Channel: 7
+Instrument: String Ensemble 1
+NbMessages: 69
+
+==========
+Channel: 8
+Instrument: String Ensemble 1
+NbMessages: 121
+
+==========
+Channel: 8
+Instrument: String Ensemble 1
+NbMessages: 139
+
+==========
+Channel: 10
+Instrument: Oboe
+NbMessages: 66
+
+==========
+Channel: 11
+Instrument: Flute
+NbMessages: 66
+
+==========
+Channel: 12
+Instrument: French Horn
+NbMessages: 245
+

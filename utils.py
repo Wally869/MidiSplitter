@@ -1,14 +1,16 @@
 from __future__ import annotations
+from typing import List
 
 import mido
+import numpy as np
 from numpy import median
 
 from copy import deepcopy
 
 
 # Find threshold to exclude timedeltas outliers
-def FindExclusionThreshold(arr: np.ndarray, cutoffMultiplier: int = 4) -> int:
-    return median(arr) * cutoffMultiplier
+def FindExclusionThreshold(arr: np.ndarray, cutoffMultiplier: float = 4) -> int:
+    return int(median(arr) * cutoffMultiplier)
 
 
 

@@ -1,0 +1,240 @@
+Filename: testGooey\DQVIII_Reminiscence.mid
+NbTracksBeforeSplit: 10
+NbTracksAfterSplit: 6
+NbSegmentsTotal: 367
+NbSegmentsKept: 46
+
+Minimum Messages: 20
+Exclusion Multiplier: 5
+Computed Exclusion Threshold: 80
+
+==========
+Channel: 1
+Instrument: Flute
+NbMessages: 51
+
+==========
+Channel: 1
+Instrument: Flute
+NbMessages: 118
+
+==========
+Channel: 1
+Instrument: Flute
+NbMessages: 51
+
+==========
+Channel: 1
+Instrument: Flute
+NbMessages: 118
+
+==========
+Channel: 2
+Instrument: Pizzicato Strings
+NbMessages: 129
+
+==========
+Channel: 2
+Instrument: Pizzicato Strings
+NbMessages: 131
+
+==========
+Channel: 4
+Instrument: Oboe
+NbMessages: 21
+
+==========
+Channel: 4
+Instrument: Oboe
+NbMessages: 21
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 29
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 29
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 29
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 29
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 29
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 29
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 29
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 29
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 29
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 29
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 29
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 29
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 27
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 29
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 43
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 29
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 29
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 29
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 29
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 29
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 29
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 29
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 29
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 29
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 29
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 29
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 29
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 27
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 29
+
+==========
+Channel: 5
+Instrument: String Ensemble 1
+NbMessages: 43
+
+==========
+Channel: 7
+Instrument: Piccolo
+NbMessages: 89
+
+==========
+Channel: 7
+Instrument: Piccolo
+NbMessages: 33
+
+==========
+Channel: 7
+Instrument: Piccolo
+NbMessages: 89
+
+==========
+Channel: 7
+Instrument: Piccolo
+NbMessages: 33
+
+==========
+Channel: 9
+Instrument: Drums
+NbMessages: 124
+
+==========
+Channel: 9
+Instrument: Drums
+NbMessages: 124
+
+==========
+Channel: 9
+Instrument: Drums
+NbMessages: 124
+
+==========
+Channel: 9
+Instrument: Drums
+NbMessages: 124
+

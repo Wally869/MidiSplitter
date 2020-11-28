@@ -8,11 +8,13 @@ from glob import glob
 import mido
 from MusiStrata.Instruments import InstrumentsLibrary
 
+
 from copy import deepcopy
 from numpy import array
 
 from utils import FindExclusionThreshold, GetSelectedMessageTypes, GetSelectedMessageTypesInSong
 
+from gooey import Gooey
 import argparse
 
 
@@ -66,28 +68,6 @@ class Report(object):
             reportString += "NbMessages: {}\n".format(segmentInfo["NbMessages"])
             reportString += "\n"
         return reportString
-
-
-
-report = Report()
-
-def main():
-    allFiles = glob(PARAMETERS.InputFolder + "\\**\\*.mid", recursive=True)
-    for f in allFiles:
-        global report
-        report = Report()
-        try:
-            HandleSong(f)
-        except OSError as e:
-            print("Mido - Error on opening file: " + f)
-            print("Error Message: " + str(e))
-            print("Catching and continuing")
-            print()
-        except:
-            print("An Error Occurred: " + str(sys.exc_info()[0]))
-            print("Catching and continuing")
-            print()
-
 
 
 
@@ -264,6 +244,63 @@ def SplitTrack(idTrack, trackMessages, exclThreshold) -> List[List[mido.message]
 
     return outTracks
 
+
+
+
+report = Report()
+
+def main():
+    allFiles = glob(PARAMETERS.InputFolder + "\\**\\*.mid", recursive=True)
+    for f in allFiles:
+        print(f)
+        global report
+        report = Report()
+        HandleSong(f)
+        """
+        try:
+            HandleSong(f)
+        except OSError as e:
+            print("Mido - Error on opening file: " + f)
+            print("Error Message: " + str(e))
+            print("Catching and continuing")
+            print()
+        except:
+            print("An Error Occurred: " + str(sys.exc_info()[0]))
+            print("Catching and continuing")
+            print()
+        """
+
+
+@Gooey
+def GooeyMain():
+    parser = argparse.ArgumentParser(description='Split Midi Songs')
+    parser.add_argument("-i", help="Folder containing Midi Files to split", nargs="+", default="testGooey")
+    parser.add_argument("-o", help="Output Folder", default="outtestGooey")
+    parser.add_argument("-m", default=20, help="Prune tracks with less midi messages than this number")
+    parser.add_argument("-e", default=5, help="Multiplier for timedelta messages. Median of timedelta multiplied by this determines section splitting")
+    parser.add_argument("-u", default=True, help="Use the track instrument, or default to Acoustic Grand Piano")
+
+    args = parser.parse_args()
+
+    #PARAMETERS.InputFolder = args.i
+    PARAMETERS.OutputFolder = args.o
+    PARAMETERS.MinimumMessages = int(args.m)
+    PARAMETERS.TimeDeltaExclusionMultiplier = int(args.e)
+    PARAMETERS.UseCorrectInstrument = args.u
+
+    if type(args.i) != list:
+        args.i = [args.i]
+
+    for folder in args.i:
+        PARAMETERS.InputFolder = folder
+        main()
+
+
+# change outputfolder argparse to allow for multiple folders?
+if __name__ == '__main__':
+    GooeyMain()
+
+"""
 # change outputfolder argparse to allow for multiple folders?
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Split Midi Songs')
@@ -287,3 +324,4 @@ if __name__ == '__main__':
     for folder in args.i:
         PARAMETERS.InputFolder = folder
         main()
+"""

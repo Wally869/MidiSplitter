@@ -1,0 +1,385 @@
+Filename: testGooey\ffxseymourblackmages.mid
+NbTracksBeforeSplit: 13
+NbTracksAfterSplit: 10
+NbSegmentsTotal: 258
+NbSegmentsKept: 75
+
+Minimum Messages: 20
+Exclusion Multiplier: 5
+Computed Exclusion Threshold: 1200
+
+==========
+Channel: 0
+Instrument: SynthStrings 1
+NbMessages: 76
+
+==========
+Channel: 0
+Instrument: SynthStrings 1
+NbMessages: 21
+
+==========
+Channel: 0
+Instrument: SynthStrings 1
+NbMessages: 76
+
+==========
+Channel: 0
+Instrument: SynthStrings 1
+NbMessages: 105
+
+==========
+Channel: 1
+Instrument: Lead 1 (square)
+NbMessages: 481
+
+==========
+Channel: 1
+Instrument: Lead 1 (square)
+NbMessages: 255
+
+==========
+Channel: 1
+Instrument: Lead 1 (square)
+NbMessages: 361
+
+==========
+Channel: 1
+Instrument: Lead 1 (square)
+NbMessages: 387
+
+==========
+Channel: 1
+Instrument: Lead 1 (square)
+NbMessages: 255
+
+==========
+Channel: 1
+Instrument: Lead 1 (square)
+NbMessages: 42
+
+==========
+Channel: 1
+Instrument: Lead 1 (square)
+NbMessages: 361
+
+==========
+Channel: 1
+Instrument: Lead 1 (square)
+NbMessages: 139
+
+==========
+Channel: 1
+Instrument: Lead 1 (square)
+NbMessages: 277
+
+==========
+Channel: 2
+Instrument: Electric Bass (finger)
+NbMessages: 397
+
+==========
+Channel: 2
+Instrument: Electric Bass (finger)
+NbMessages: 37
+
+==========
+Channel: 2
+Instrument: Electric Bass (finger)
+NbMessages: 578
+
+==========
+Channel: 2
+Instrument: Electric Bass (finger)
+NbMessages: 558
+
+==========
+Channel: 2
+Instrument: Electric Bass (finger)
+NbMessages: 37
+
+==========
+Channel: 2
+Instrument: Electric Bass (finger)
+NbMessages: 38
+
+==========
+Channel: 2
+Instrument: Electric Bass (finger)
+NbMessages: 254
+
+==========
+Channel: 2
+Instrument: Electric Bass (finger)
+NbMessages: 114
+
+==========
+Channel: 3
+Instrument: Distortion Guitar
+NbMessages: 219
+
+==========
+Channel: 3
+Instrument: Distortion Guitar
+NbMessages: 542
+
+==========
+Channel: 3
+Instrument: Distortion Guitar
+NbMessages: 380
+
+==========
+Channel: 3
+Instrument: Distortion Guitar
+NbMessages: 254
+
+==========
+Channel: 3
+Instrument: Distortion Guitar
+NbMessages: 105
+
+==========
+Channel: 9
+Instrument: Drums
+NbMessages: 2368
+
+==========
+Channel: 9
+Instrument: Drums
+NbMessages: 28
+
+==========
+Channel: 9
+Instrument: Drums
+NbMessages: 36
+
+==========
+Channel: 9
+Instrument: Drums
+NbMessages: 42
+
+==========
+Channel: 9
+Instrument: Drums
+NbMessages: 1634
+
+==========
+Channel: 9
+Instrument: Drums
+NbMessages: 754
+
+==========
+Channel: 9
+Instrument: Drums
+NbMessages: 28
+
+==========
+Channel: 9
+Instrument: Drums
+NbMessages: 36
+
+==========
+Channel: 9
+Instrument: Drums
+NbMessages: 42
+
+==========
+Channel: 9
+Instrument: Drums
+NbMessages: 228
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 25
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 21
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 25
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 21
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 25
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 21
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 25
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 21
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 25
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 21
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 25
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 91
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 25
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 85
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 129
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 129
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 505
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 527
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 25
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 21
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 25
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 21
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 25
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 93
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 25
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 83
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 129
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 129
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 505
+
+==========
+Channel: 5
+Instrument: Rock Organ
+NbMessages: 213
+
+==========
+Channel: 6
+Instrument: SynthBrass 1
+NbMessages: 21
+
+==========
+Channel: 8
+Instrument: Bright Acoustic Piano
+NbMessages: 233
+
+==========
+Channel: 11
+Instrument: Overdriven Guitar
+NbMessages: 60
+
+==========
+Channel: 11
+Instrument: Overdriven Guitar
+NbMessages: 59
+
+==========
+Channel: 11
+Instrument: Overdriven Guitar
+NbMessages: 29
+
+==========
+Channel: 11
+Instrument: Overdriven Guitar
+NbMessages: 29
+
+==========
+Channel: 11
+Instrument: Overdriven Guitar
+NbMessages: 64
+
+==========
+Channel: 11
+Instrument: Overdriven Guitar
+NbMessages: 21
+
+==========
+Channel: 4
+Instrument: Bright Acoustic Piano
+NbMessages: 121
+
